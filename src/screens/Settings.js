@@ -1,11 +1,13 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {Text} from 'react-native';
+
+import {ScreenTemplate} from '../atoms';
 
 const Settings = () => {
   return (
-    <View>
+    <ScreenTemplate>
       <Text>Settings</Text>
-    </View>
+    </ScreenTemplate>
   );
 };
 
