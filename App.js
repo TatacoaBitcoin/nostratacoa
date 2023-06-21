@@ -3,12 +3,16 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {useTranslation} from 'react-i18next';
 
 import {Home, Market, Social, Settings} from './src/screens';
+import './i18n.config';
 
 const Tab = createBottomTabNavigator();
 
 const MainFlow = () => {
+  const {t} = useTranslation();
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -19,7 +23,7 @@ const MainFlow = () => {
         name="Home"
         component={Home}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: t('tabs.home'),
           tabBarIcon: ({color, size}) => (
             <Icon name="wallet" color={color} size={size} />
           ),
@@ -29,7 +33,7 @@ const MainFlow = () => {
         name="Market"
         component={Market}
         options={{
-          tabBarLabel: 'Market',
+          tabBarLabel: t('tabs.market'),
           tabBarIcon: ({color, size}) => (
             <Icon name="shopping" color={color} size={size} />
           ),
@@ -39,7 +43,7 @@ const MainFlow = () => {
         name="Social"
         component={Social}
         options={{
-          tabBarLabel: 'Social',
+          tabBarLabel: t('tabs.social'),
           tabBarIcon: ({color, size}) => (
             <Icon name="comment-text-multiple" color={color} size={size} />
           ),
@@ -49,7 +53,7 @@ const MainFlow = () => {
         name="Settings"
         component={Settings}
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: t('tabs.settings'),
           tabBarIcon: ({color, size}) => (
             <Icon name="cog" color={color} size={size} />
           ),
