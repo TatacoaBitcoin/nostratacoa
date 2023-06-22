@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {useTranslation} from 'react-i18next';
 
+import {BackButton} from './src/atoms';
 import {Home, Market, Social, Settings} from './src/screens';
 import './i18n.config';
 
@@ -16,6 +17,7 @@ const MainFlow = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
+      backBehavior="history"
       screenOptions={{
         headerShown: false,
       }}>
@@ -53,10 +55,14 @@ const MainFlow = () => {
         name="Settings"
         component={Settings}
         options={{
+          headerShown: true,
           tabBarLabel: t('tabs.settings'),
           tabBarIcon: ({color, size}) => (
             <Icon name="cog" color={color} size={size} />
           ),
+          tabBarStyle: {display: 'none'},
+          headerTitle: t('tabs.settings'),
+          headerLeft: () => <BackButton />,
         }}
       />
     </Tab.Navigator>
