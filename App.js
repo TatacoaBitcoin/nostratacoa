@@ -7,11 +7,42 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {useTranslation} from 'react-i18next';
 
 import {BackButton} from './src/atoms';
-import {Home, Market, Social, Settings, RelaySettings} from './src/screens';
+import {
+  Home, 
+  Market, 
+  Social, 
+  Settings, 
+  RelaySettings,
+  CreateWallet,
+  Welcome,
+} from './src/screens';
 import './i18n.config';
 
 const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();
+const NewAccountStack = createNativeStackNavigator();
+
+const NewAccountFlow = () => {
+  return (
+    <NewAccountStack.Navigator initialRouteName="Welcome">
+      <NewAccountStack.Screen
+        name="Welcome"
+        component={Welcome}
+        options={{
+          title: 'Welcome',
+          headerShown: false,
+        }}
+      />
+      <NewAccountStack.Screen
+        name="CreateWallet"
+        component={CreateWallet}
+        options={{
+          title: 'Create New Account',
+        }}
+      />
+    </NewAccountStack.Navigator>
+  );
+};
 
 const SettingsFlow = () => {
   return(
@@ -94,10 +125,12 @@ const MainFlow = () => {
 };
 
 const App = () => {
+  const hasAccount = false;
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <MainFlow />
+        {hasAccount ? <MainFlow /> : <NewAccountFlow />}
       </NavigationContainer>
     </SafeAreaProvider>
   );
