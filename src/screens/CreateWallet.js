@@ -1,17 +1,24 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, Button, ScrollView} from 'react-native';
 
 import {ScreenTemplate} from '../atoms';
+import {WordList} from '../molecules';
 import {useRecoveryWords} from '../hooks/useRecoveryWords';
 
-const CreateWallet = () => {
+const CreateWallet = ({navigation}) => {
   const {randomWords, generateWords, generateSeed} = useRecoveryWords();
-
-  console.log(randomWords);
 
   return (
     <ScreenTemplate>
-      <Text>CreateWallet</Text>
+      <Text>Write down your 12-word phrase in the correct order</Text>
+      <ScrollView>
+        <WordList list={randomWords} />
+        <Button title="Regenerate" onPress={generateWords} />
+        <Button
+          title="Next"
+          onPress={() => console.log('navigate to next screen')}
+        />
+      </ScrollView>
     </ScreenTemplate>
   );
 };
