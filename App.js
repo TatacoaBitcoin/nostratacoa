@@ -1,14 +1,49 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {useTranslation} from 'react-i18next';
 
-import {Home, Market, Social, Settings} from './src/screens';
+import {
+  Home,
+  Market,
+  Social,
+  Settings,
+  CreateWallet,
+  Welcome,
+} from './src/screens';
 import './i18n.config';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+const NewAccountFlow = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{
+        headerMode: 'screen',
+      }}>
+      <Stack.Screen
+        name="Welcome"
+        component={Welcome}
+        options={{
+          title: 'Welcome',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="CreateWallet"
+        component={CreateWallet}
+        options={{
+          title: 'Create New Account',
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const MainFlow = () => {
   const {t} = useTranslation();
@@ -64,10 +99,12 @@ const MainFlow = () => {
 };
 
 const App = () => {
+  const hasAccount = false;
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <MainFlow />
+        {hasAccount ? <MainFlow /> : <NewAccountFlow />}
       </NavigationContainer>
     </SafeAreaProvider>
   );
