@@ -5,6 +5,7 @@ import {ScreenTemplate} from '../atoms';
 import {WordList, PwdModal} from '../molecules';
 import {useRecoveryWords} from '../hooks/useRecoveryWords';
 import {useLoading} from '../hooks/useLoading';
+import {generatePrivateKey} from '../libs/hdkey';
 
 const CreateWallet = ({navigation}) => {
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
@@ -16,9 +17,21 @@ const CreateWallet = ({navigation}) => {
     setPasswordModalOpen(true);
   };
 
-  const onCreateWallet = password => {
-    console.log('wallet created!', password);
-  };
+  const onCreateWallet = password =>
+    withLoading(async () => {
+      try {
+        const seed = await generateSeed(password);
+
+        if (seed !== undefined) {
+          const key = await generatePrivateKey(seed);
+
+          setPasswordModalOpen(false);
+          // loadWallet(key);
+        }
+      } catch (error) {
+        console.log('onCreateWallet#error', error.message);
+      }
+    });
 
   return (
     <ScreenTemplate>

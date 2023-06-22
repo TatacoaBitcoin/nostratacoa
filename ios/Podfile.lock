@@ -425,6 +425,8 @@ PODS:
     - React-perflogger (= 0.71.11)
   - RNGestureHandler (2.12.0):
     - React-Core
+  - RNKeychain (8.1.1):
+    - React-Core
   - RNScreens (3.21.1):
     - React-Core
     - React-RCTImage
@@ -500,6 +502,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSecureRandom (from `../node_modules/react-native-securerandom`)
   - RNSha256 (from `../node_modules/react-native-sha256`)
@@ -598,6 +601,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSecureRandom:
@@ -658,6 +663,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 4817d63dbc9d658f8dc0ec56bd9b83ce531129f0
   ReactCommon: 08723d2ed328c5cbcb0de168f231bc7bae7f8aa1
   RNGestureHandler: dec4645026e7401a0899f2846d864403478ff6a5
+  RNKeychain: ff836453cba46938e0e9e4c22e43d43fa2c90333
   RNScreens: d3675ab2878704de70c9dae57fa5d024802404cc
   RNSecureRandom: 07efbdf2cd99efe13497433668e54acd7df49fef
   RNSha256: a6bc3640a34eb41907e363828b9ec742c274298d
