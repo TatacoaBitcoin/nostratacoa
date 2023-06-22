@@ -1,32 +1,31 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {useTranslation} from 'react-i18next';
 
+import {BackButton} from './src/atoms';
 import {
-  Home,
-  Market,
-  Social,
-  Settings,
+  Home, 
+  Market, 
+  Social, 
+  Settings, 
+  RelaySettings,
   CreateWallet,
   Welcome,
 } from './src/screens';
 import './i18n.config';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+const SettingsStack = createNativeStackNavigator();
+const NewAccountStack = createNativeStackNavigator();
 
 const NewAccountFlow = () => {
   return (
-    <Stack.Navigator
-      initialRouteName="Welcome"
-      screenOptions={{
-        headerMode: 'screen',
-      }}>
-      <Stack.Screen
+    <NewAccountStack.Navigator initialRouteName="Welcome">
+      <NewAccountStack.Screen
         name="Welcome"
         component={Welcome}
         options={{
@@ -34,16 +33,38 @@ const NewAccountFlow = () => {
           headerShown: false,
         }}
       />
-      <Stack.Screen
+      <NewAccountStack.Screen
         name="CreateWallet"
         component={CreateWallet}
         options={{
           title: 'Create New Account',
         }}
       />
-    </Stack.Navigator>
+    </NewAccountStack.Navigator>
   );
 };
+
+const SettingsFlow = () => {
+  return(
+    <SettingsStack.Navigator
+      screenOptions={{
+        headerShown: true,
+        animation: 'slide_from_right',
+      }}>
+      <SettingsStack.Screen
+        name="Home"
+        component={Settings}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <SettingsStack.Screen
+        name="Relays Settings"
+        component={RelaySettings}
+      />
+    </SettingsStack.Navigator>
+  );
+}
 
 const MainFlow = () => {
   const {t} = useTranslation();
@@ -51,6 +72,7 @@ const MainFlow = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
+      backBehavior="history"
       screenOptions={{
         headerShown: false,
       }}>
@@ -86,12 +108,16 @@ const MainFlow = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsFlow}
         options={{
+          headerShown: true,
           tabBarLabel: t('tabs.settings'),
           tabBarIcon: ({color, size}) => (
             <Icon name="cog" color={color} size={size} />
           ),
+          tabBarStyle: {display: 'none'},
+          headerTitle: t('tabs.settings'),
+          headerLeft: () => <BackButton />,
         }}
       />
     </Tab.Navigator>

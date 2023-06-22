@@ -4,5 +4,8 @@
     "market": "Market",
     "social": "Social",
     "settings": "Settings"
+  },
+  "header": {
+    "backButton": "Back"
   }
 }
