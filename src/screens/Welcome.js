@@ -12,6 +12,10 @@ const Welcome = ({navigation}) => {
         title="Create new account"
         onPress={() => navigation.navigate('CreateWallet')}
       />
+      <Button
+        title="Wallet Recovery"
+        onPress={() => navigation.navigate('RecoverWallet')}
+      />
     </ScreenTemplate>
   );
 };

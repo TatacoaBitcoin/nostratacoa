@@ -8,13 +8,14 @@ import {useTranslation} from 'react-i18next';
 
 import {BackButton} from './src/atoms';
 import {
-  Home, 
-  Market, 
-  Social, 
-  Settings, 
+  Home,
+  Market,
+  Social,
+  Settings,
   RelaySettings,
   CreateWallet,
   Welcome,
+  RecoverWallet,
 } from './src/screens';
 import './i18n.config';
 
@@ -40,12 +41,19 @@ const NewAccountFlow = () => {
           title: 'Create New Account',
         }}
       />
+      <NewAccountStack.Screen
+        name="RecoverWallet"
+        component={RecoverWallet}
+        options={{
+          title: 'Wallet Recovery',
+        }}
+      />
     </NewAccountStack.Navigator>
   );
 };
 
 const SettingsFlow = () => {
-  return(
+  return (
     <SettingsStack.Navigator
       screenOptions={{
         headerShown: true,
@@ -58,13 +66,10 @@ const SettingsFlow = () => {
           headerShown: false,
         }}
       />
-      <SettingsStack.Screen
-        name="Relays Settings"
-        component={RelaySettings}
-      />
+      <SettingsStack.Screen name="Relays Settings" component={RelaySettings} />
     </SettingsStack.Navigator>
   );
-}
+};
 
 const MainFlow = () => {
   const {t} = useTranslation();

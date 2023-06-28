@@ -5,3 +5,4 @@ export * from './RelaySettings';
 export * from './Social';
 export * from './CreateWallet';
 export * from './Welcome';
+export * from './RecoverWallet';
