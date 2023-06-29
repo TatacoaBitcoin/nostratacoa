@@ -1,12 +1,12 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text,View} from 'react-native';
 
-import {ScreenTemplate} from '../atoms';
+import {RelayItem, ScreenTemplate} from '../atoms';
 
 const RelaySettings = () => {
   return (
     <ScreenTemplate>
-      <Text>Relay Settings</Text>
+      <RelayItem />
     </ScreenTemplate>
   );
 };
