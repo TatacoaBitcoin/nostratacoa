@@ -30,7 +30,8 @@
       "passwordconfirmation": "Repita la contraseña",
       "create": "Crear cuenta",
       "cancel": "Cancelar"
-    },
+    }
+  },
   "settings": {
     "relays": "Servidores"
   }

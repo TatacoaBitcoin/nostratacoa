@@ -30,7 +30,8 @@
       "passwordconfirmation": "Type the password again",
       "create": "Create account",
       "cancel": "Cancel"
-    },
+    }
+  },
   "settings": {
     "relays": "Relays"
   }
