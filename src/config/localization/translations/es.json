@@ -7,5 +7,29 @@
   },
   "header": {
     "backButton": "Atrás"
+  },
+  "welcome": {
+    "title": "Bienvenido",
+    "create": "Crear cuenta",
+    "recovery": "Recuperar cuenta"
+  },
+  "recovery" : {
+    "title": "Recuperar cuenta",
+    "text": "Introduzca su frase semilla de 12 palabras",
+    "button": "Continuar"
+  },
+  "newaccount": {
+    "title": "Crear cuenta",
+    "text": "Anote su frase semilla de 12 palabras en el orden correcto",
+    "refresh": "Regenerar palabras",
+    "button": "Continuar",
+    "modal": {
+      "title": "Cree una contraseña",
+      "text": "Introduzca una contraseña segura para ingresar fácilmente a su cuenta.",
+      "password": "Introduzca una contraseña",
+      "passwordconfirmation": "Repita la contraseña",
+      "create": "Crear cuenta",
+      "cancel": "Cancelar"
+    }
   }
 }

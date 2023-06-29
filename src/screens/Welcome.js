@@ -1,19 +1,21 @@
 import React from 'react';
 import {Text, Button} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 import {ScreenTemplate} from '../atoms';
 
 const Welcome = ({navigation}) => {
+  const {t} = useTranslation();
+
   return (
     <ScreenTemplate>
-      <Text>Welcome</Text>
-      <Text>You don't have an account</Text>
+      <Text>{t('welcome.title')}</Text>
       <Button
-        title="Create new account"
+        title={t('welcome.create')}
         onPress={() => navigation.navigate('CreateWallet')}
       />
       <Button
-        title="Wallet Recovery"
+        title={t('welcome.recovery')}
         onPress={() => navigation.navigate('RecoverWallet')}
       />
     </ScreenTemplate>

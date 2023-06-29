@@ -23,14 +23,15 @@ const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();
 const NewAccountStack = createNativeStackNavigator();
 
-const NewAccountFlow = () => {
+const AccountSetupFlow = () => {
+  const {t} = useTranslation();
+
   return (
     <NewAccountStack.Navigator initialRouteName="Welcome">
       <NewAccountStack.Screen
         name="Welcome"
         component={Welcome}
         options={{
-          title: 'Welcome',
           headerShown: false,
         }}
       />
@@ -38,14 +39,14 @@ const NewAccountFlow = () => {
         name="CreateWallet"
         component={CreateWallet}
         options={{
-          title: 'Create New Account',
+          title: t('newaccount.title'),
         }}
       />
       <NewAccountStack.Screen
         name="RecoverWallet"
         component={RecoverWallet}
         options={{
-          title: 'Wallet Recovery',
+          title: t('recovery.title'),
         }}
       />
     </NewAccountStack.Navigator>
@@ -135,7 +136,7 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        {hasAccount ? <MainFlow /> : <NewAccountFlow />}
+        {hasAccount ? <MainFlow /> : <AccountSetupFlow />}
       </NavigationContainer>
     </SafeAreaProvider>
   );

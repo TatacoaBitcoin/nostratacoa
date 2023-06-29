@@ -7,11 +7,13 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 import {ScreenTemplate} from '../atoms';
 import {isWordValid} from '../utils';
 
 const RecoverWallet = ({navigation}) => {
+  const {t} = useTranslation();
   const [words, setWords] = useState(Array(12).fill(''));
   const [wordStatus, setWordStatus] = useState(Array(12).fill(''));
 
@@ -34,7 +36,7 @@ const RecoverWallet = ({navigation}) => {
   return (
     <ScreenTemplate>
       <ScrollView>
-        <Text>Enter your 12-word phrase</Text>
+        <Text>{t('recovery.text')}</Text>
         {words.map((word, idx) => (
           <View style={styles.inputContainer} key={idx}>
             <Text
@@ -57,7 +59,7 @@ const RecoverWallet = ({navigation}) => {
             />
           </View>
         ))}
-        <Button title="Next" />
+        <Button title={t('recovery.button')} />
       </ScrollView>
     </ScreenTemplate>
   );
