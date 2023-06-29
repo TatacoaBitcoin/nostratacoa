@@ -1,17 +1,31 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Switch, Text, View} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const RelayItem = () => {
+  const [isConnected, setIsConnected] = useState(false);
+  const toggleConnected = () => setIsConnected(previousState => !previousState);
+
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.textName}>bitcoiner.social</Text>
-        <Text style={styles.textStatus}>sin conexión</Text>
+        {isConnected
+          ? <Text style={styles.textSuccessStatus}>Conectado</Text>
+          : <Text style={styles.textErrorStatus}>Sin Conexión</Text>
+        }
       </View>
       <View style={styles.actionsContainer}>
-        <Text style={styles.actionText}>conectar</Text>
+        <View style={styles.switchContainer}>
+          <Switch
+            trackColor={{false: 'grey', true: 'lightgreen'}}
+            thumbColor={isConnected ? 'green' : 'lightgrey'}
+            ios_backgroundColor="grey"
+            onValueChange={toggleConnected}
+            value={isConnected}
+          />
+        </View>
         <Icon name="dots-vertical" color={'black'} size={20} />
       </View>
     </View>
@@ -33,17 +47,22 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 20,
   },
-  textStatus: {
-    color: 'grey',
+  textSuccessStatus: {
+    color: 'green',
+    fontSize: 14,
+    paddingBottom: 6,
+  },
+  textErrorStatus: {
+    color: 'red',
     fontSize: 14,
     paddingBottom: 6,
   },
   actionsContainer: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
   },
-  actionText: {
-    color: 'green',
+  switchContainer: {
     marginRight: 10,
   }
 });
