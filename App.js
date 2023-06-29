@@ -1,5 +1,8 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  getFocusedRouteNameFromRoute
+} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -48,6 +51,12 @@ const NewAccountFlow = () => {
   );
 };
 
+const RELAY_SETTINGS_SCREEN_NAME = "Relays Settings"
+
+SETTINGS_SCREENS = [
+  RELAY_SETTINGS_SCREEN_NAME,
+]
+
 const SettingsFlow = () => {
   return(
     <SettingsStack.Navigator
@@ -63,7 +72,7 @@ const SettingsFlow = () => {
         }}
       />
       <SettingsStack.Screen
-        name="Relays Settings"
+        name={RELAY_SETTINGS_SCREEN_NAME}
         component={RelaySettings}
       />
     </SettingsStack.Navigator>
@@ -72,6 +81,11 @@ const SettingsFlow = () => {
 
 const MainFlow = () => {
   const {t} = useTranslation();
+
+  function getSettingsHeaderShown(route) {
+    const routeName = getFocusedRouteNameFromRoute(route)
+    return !SETTINGS_SCREENS.includes(routeName)
+  }
 
   return (
     <Tab.Navigator
@@ -113,8 +127,8 @@ const MainFlow = () => {
       <Tab.Screen
         name="Settings"
         component={SettingsFlow}
-        options={{
-          headerShown: true,
+        options={({ route }) => ({
+          headerShown: getSettingsHeaderShown(route),
           tabBarLabel: t('tabs.settings'),
           tabBarIcon: ({color, size}) => (
             <Icon name="cog" color={color} size={size} />
@@ -122,7 +136,7 @@ const MainFlow = () => {
           tabBarStyle: {display: 'none'},
           headerTitle: t('tabs.settings'),
           headerLeft: () => <BackButton />,
-        }}
+        })}
       />
     </Tab.Navigator>
   );
