@@ -10,23 +10,17 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {useTranslation} from 'react-i18next';
 
 import {BackButton} from './src/atoms';
-<<<<<<< HEAD
-import {Home, Market, Social, Settings, RelaySettings} from './src/screens';
-=======
+import {SettingsFlow, SETTINGS_SCREENS} from './src/config/navigation/SettingsFlow';
 import {
   Home, 
   Market, 
   Social, 
-  Settings, 
-  RelaySettings,
   CreateWallet,
   Welcome,
 } from './src/screens';
->>>>>>> main
 import './i18n.config';
 
 const Tab = createBottomTabNavigator();
-const SettingsStack = createNativeStackNavigator();
 const NewAccountStack = createNativeStackNavigator();
 
 const NewAccountFlow = () => {
@@ -51,33 +45,6 @@ const NewAccountFlow = () => {
   );
 };
 
-const RELAY_SETTINGS_SCREEN_NAME = "Relays Settings"
-
-SETTINGS_SCREENS = [
-  RELAY_SETTINGS_SCREEN_NAME,
-]
-
-const SettingsFlow = () => {
-  return(
-    <SettingsStack.Navigator
-      screenOptions={{
-        headerShown: true,
-        animation: 'slide_from_right',
-      }}>
-      <SettingsStack.Screen
-        name="Home"
-        component={Settings}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <SettingsStack.Screen
-        name={RELAY_SETTINGS_SCREEN_NAME}
-        component={RelaySettings}
-      />
-    </SettingsStack.Navigator>
-  );
-}
 
 const MainFlow = () => {
   const {t} = useTranslation();
@@ -143,7 +110,7 @@ const MainFlow = () => {
 };
 
 const App = () => {
-  const hasAccount = false;
+  const hasAccount = true;
 
   return (
     <SafeAreaProvider>

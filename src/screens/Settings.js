@@ -1,21 +1,20 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {StyleSheet, Text, View} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
-import {ScreenTemplate} from '../atoms';
+import {ScreenTemplate, SettingsNavItem} from '../atoms';
+import {RELAYS_SETTINGS_SCREEN_NAME} from '../config/navigation/SettingsFlow';
 
-const Settings = ({ navigation }) => {
+const Settings = () => {
+  const {t} = useTranslation();
+
   return (
     <ScreenTemplate>
       <View style={styles.container}>
-        <Pressable
-          style={styles.pressableContainer}
-          onPress={() => {
-            navigation.navigate("Relays Settings")
-          }}>
-            <Text style={styles.text}>Relays</Text>
-            <Icon name="chevron-right" color={'black'} size={24} />
-        </Pressable>
+        <SettingsNavItem
+          to={RELAYS_SETTINGS_SCREEN_NAME}
+          label={t('settings.relays')}
+          rightText={<Text style={{color: 'red'}}>Sin conexión</Text>}/>
       </View>
     </ScreenTemplate>
   );
@@ -26,19 +25,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingHorizontal: 20,
   },
-  pressableContainer: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: 'lightgrey',
-    paddingVertical: 20,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  text: {
-    fontSize: 18,
-    color: 'black',
-  }
 });
 
 export {Settings};
