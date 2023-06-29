@@ -11,11 +11,22 @@ import {useTranslation} from 'react-i18next';
 
 import {ScreenTemplate} from '../atoms';
 import {isWordValid} from '../utils';
+import {PwdModal} from '../molecules';
+import {useLoading} from '../hooks/useLoading';
+import {useRecoveryWords} from '../hooks/useRecoveryWords';
+import {generatePrivateKey} from '../libs/hdkey';
+
+const RECOVERY_WORD_COUNT = 12;
 
 const RecoverWallet = ({navigation}) => {
   const {t} = useTranslation();
-  const [words, setWords] = useState(Array(12).fill(''));
-  const [wordStatus, setWordStatus] = useState(Array(12).fill(''));
+  const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
+  const {isLoading, withLoading} = useLoading();
+  const [words, setWords] = useState(Array(RECOVERY_WORD_COUNT).fill(''));
+  const [wordStatus, setWordStatus] = useState(
+    Array(RECOVERY_WORD_COUNT).fill(''),
+  );
+  const {generateSeed} = useRecoveryWords();
 
   const handleInputChange = (value, index) => {
     const isValid = isWordValid(value);
@@ -33,8 +44,38 @@ const RecoverWallet = ({navigation}) => {
     setWords(updatedWords);
   };
 
+  const onRestoreWallet = password =>
+    withLoading(async () => {
+      try {
+        const seed = await generateSeed(password);
+
+        if (seed !== undefined) {
+          const key = await generatePrivateKey(seed);
+
+          // loadWallet(key);
+          setPasswordModalOpen(false);
+        }
+      } catch (error) {
+        console.log('onRestoreWallet#error', error.message);
+      }
+    });
+
+  const onContinue = () => {
+    setPasswordModalOpen(true);
+  };
+
+  const wordsAreComplete = () => {
+    return words.filter(item => item !== '').length < RECOVERY_WORD_COUNT;
+  };
+
   return (
     <ScreenTemplate>
+      <PwdModal
+        isVisible={isPasswordModalOpen}
+        isWalletLoading={isLoading}
+        setVisible={setPasswordModalOpen}
+        onContinue={onRestoreWallet}
+      />
       <ScrollView>
         <Text>{t('recovery.text')}</Text>
         {words.map((word, idx) => (
@@ -59,7 +100,11 @@ const RecoverWallet = ({navigation}) => {
             />
           </View>
         ))}
-        <Button title={t('recovery.button')} />
+        <Button
+          title={t('recovery.button')}
+          onPress={onContinue}
+          disabled={wordsAreComplete()}
+        />
       </ScrollView>
     </ScreenTemplate>
   );

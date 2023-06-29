@@ -27,8 +27,8 @@ const CreateWallet = ({navigation}) => {
         if (seed !== undefined) {
           const key = await generatePrivateKey(seed);
 
-          setPasswordModalOpen(false);
           // loadWallet(key);
+          setPasswordModalOpen(false);
         }
       } catch (error) {
         console.log('onCreateWallet#error', error.message);

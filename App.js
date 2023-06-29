@@ -123,7 +123,7 @@ const MainFlow = () => {
 };
 
 const App = () => {
-  const hasAccount = true;
+  const hasAccount = false;
 
   return (
     <SafeAreaProvider>
