@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 import {Modal} from '../atoms/Modal';
 
 const PwdModal = ({isVisible, isWalletLoading, setVisible, onContinue}) => {
+  const {t} = useTranslation();
   const [errorMessage, setErrorMessage] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -24,16 +26,12 @@ const PwdModal = ({isVisible, isWalletLoading, setVisible, onContinue}) => {
     <View>
       <Modal isVisible={isVisible} setVisible={setVisible}>
         <View style={styles.sectionContainer}>
-          <Text style={styles.title}>Set password</Text>
-          <Text style={styles.description}>
-            Set a strong password allowing you to login easily to your wallet
-            from this device. We don't send and store the password anywhere
-            except this device.
-          </Text>
+          <Text style={styles.title}>{t('newaccount.modal.title')}</Text>
+          <Text style={styles.description}>{t('newaccount.modal.text')}</Text>
         </View>
         <View style={styles.sectionContainer}>
           <TextInput
-            placeholder="Type a strong password"
+            placeholder={t('newaccount.modal.password')}
             value={password}
             onChangeText={setPassword}
             secureTextEntry
@@ -42,7 +40,7 @@ const PwdModal = ({isVisible, isWalletLoading, setVisible, onContinue}) => {
           <TextInput
             value={confirmPassword}
             onChangeText={setConfirmPassword}
-            placeholder="Type the password again"
+            placeholder={t('newaccount.modal.passwordconfirmation')}
             // errorMessage={errorMessage}
             secureTextEntry
           />
@@ -52,8 +50,14 @@ const PwdModal = ({isVisible, isWalletLoading, setVisible, onContinue}) => {
             Create wallet
           </Button>
           <Button onPress={() => setVisible(false)}>Cancel</Button> */}
-          <Button title="Create wallet" onPress={onCreateWallet} />
-          <Button title="Cancel" onPress={() => setVisible(false)} />
+          <Button
+            title={t('newaccount.modal.create')}
+            onPress={onCreateWallet}
+          />
+          <Button
+            title={t('newaccount.modal.cancel')}
+            onPress={() => setVisible(false)}
+          />
         </View>
       </Modal>
     </View>

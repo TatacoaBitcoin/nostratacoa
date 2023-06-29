@@ -1,5 +1,8 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  getFocusedRouteNameFromRoute,
+} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,28 +11,33 @@ import {useTranslation} from 'react-i18next';
 
 import {BackButton} from './src/atoms';
 import {
-  Home, 
-  Market, 
-  Social, 
-  Settings, 
+  SettingsFlow,
+  SETTINGS_SCREENS,
+} from './src/config/navigation/SettingsFlow';
+import {
+  Home,
+  Market,
+  Social,
+  Settings,
   RelaySettings,
   CreateWallet,
   Welcome,
+  RecoverWallet,
 } from './src/screens';
 import './i18n.config';
 
 const Tab = createBottomTabNavigator();
-const SettingsStack = createNativeStackNavigator();
 const NewAccountStack = createNativeStackNavigator();
 
-const NewAccountFlow = () => {
+const AccountSetupFlow = () => {
+  const {t} = useTranslation();
+
   return (
     <NewAccountStack.Navigator initialRouteName="Welcome">
       <NewAccountStack.Screen
         name="Welcome"
         component={Welcome}
         options={{
-          title: 'Welcome',
           headerShown: false,
         }}
       />
@@ -37,37 +45,27 @@ const NewAccountFlow = () => {
         name="CreateWallet"
         component={CreateWallet}
         options={{
-          title: 'Create New Account',
+          title: t('newaccount.title'),
+        }}
+      />
+      <NewAccountStack.Screen
+        name="RecoverWallet"
+        component={RecoverWallet}
+        options={{
+          title: t('recovery.title'),
         }}
       />
     </NewAccountStack.Navigator>
   );
 };
 
-const SettingsFlow = () => {
-  return(
-    <SettingsStack.Navigator
-      screenOptions={{
-        headerShown: true,
-        animation: 'slide_from_right',
-      }}>
-      <SettingsStack.Screen
-        name="Home"
-        component={Settings}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <SettingsStack.Screen
-        name="Relays Settings"
-        component={RelaySettings}
-      />
-    </SettingsStack.Navigator>
-  );
-}
-
 const MainFlow = () => {
   const {t} = useTranslation();
+
+  function getSettingsHeaderShown(route) {
+    const routeName = getFocusedRouteNameFromRoute(route);
+    return !SETTINGS_SCREENS.includes(routeName);
+  }
 
   return (
     <Tab.Navigator
@@ -109,8 +107,8 @@ const MainFlow = () => {
       <Tab.Screen
         name="Settings"
         component={SettingsFlow}
-        options={{
-          headerShown: true,
+        options={({route}) => ({
+          headerShown: getSettingsHeaderShown(route),
           tabBarLabel: t('tabs.settings'),
           tabBarIcon: ({color, size}) => (
             <Icon name="cog" color={color} size={size} />
@@ -118,19 +116,19 @@ const MainFlow = () => {
           tabBarStyle: {display: 'none'},
           headerTitle: t('tabs.settings'),
           headerLeft: () => <BackButton />,
-        }}
+        })}
       />
     </Tab.Navigator>
   );
 };
 
 const App = () => {
-  const hasAccount = false;
+  const hasAccount = true;
 
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        {hasAccount ? <MainFlow /> : <NewAccountFlow />}
+        {hasAccount ? <MainFlow /> : <AccountSetupFlow />}
       </NavigationContainer>
     </SafeAreaProvider>
   );
