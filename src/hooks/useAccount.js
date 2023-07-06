@@ -5,7 +5,7 @@ export const useAccount = () => {
 
   const loadAccount = privateKey => {
     if (privateKey) {
-      // convert private key to address
+      // TODO: convert private key to address
       setAccount('address');
     }
   };

@@ -21,7 +21,6 @@ export const useBalance = address => {
     } else {
       getBalance().then(setBalance);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
