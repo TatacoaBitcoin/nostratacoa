@@ -18,13 +18,12 @@ import {
   Home,
   Market,
   Social,
-  Settings,
-  RelaySettings,
   CreateWallet,
   Welcome,
   RecoverWallet,
 } from './src/screens';
 import './i18n.config';
+import {AccountProvider} from './src/context/account.provider';
 
 const Tab = createBottomTabNavigator();
 const NewAccountStack = createNativeStackNavigator();
@@ -123,13 +122,15 @@ const MainFlow = () => {
 };
 
 const App = () => {
-  const hasAccount = false;
+  const hasAccount = true;
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        {hasAccount ? <MainFlow /> : <AccountSetupFlow />}
-      </NavigationContainer>
+      <AccountProvider>
+        <NavigationContainer>
+          {hasAccount ? <MainFlow /> : <AccountSetupFlow />}
+        </NavigationContainer>
+      </AccountProvider>
     </SafeAreaProvider>
   );
 };
