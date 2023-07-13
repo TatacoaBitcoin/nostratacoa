@@ -20,9 +20,12 @@
     "@react-navigation/native-stack": "^6.9.12",
     "@react-navigation/stack": "^6.3.17",
     "buffer": "^6.0.3",
+    "expo": "^48.0.0",
+    "expo-crypto": "~12.2.1",
     "i18next": "^23.2.2",
     "isomorphic-webcrypto": "github:earonesty/isomorphic-webcrypto",
     "js-sha512": "^0.8.0",
+    "nostr-tools": "^1.12.1",
     "react": "18.2.0",
     "react-i18next": "^13.0.0",
     "react-native": "0.71.11",
@@ -33,9 +36,7 @@
     "react-native-screens": "^3.21.1",
     "react-native-securerandom": "^1.0.1",
     "react-native-sha256": "^1.4.9",
-    "react-native-vector-icons": "^9.2.0",
-    "expo": "^48.0.0",
-    "expo-crypto": "~12.2.1"
+    "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
