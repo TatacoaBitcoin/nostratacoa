@@ -78,6 +78,7 @@ const MainFlow = () => {
         component={Home}
         options={{
           tabBarLabel: t('tabs.home'),
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({color, size}) => (
             <Icon name="wallet" color={color} size={size} />
           ),
@@ -88,6 +89,7 @@ const MainFlow = () => {
         component={Market}
         options={{
           tabBarLabel: t('tabs.market'),
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({color, size}) => (
             <Icon name="shopping" color={color} size={size} />
           ),
@@ -98,6 +100,7 @@ const MainFlow = () => {
         component={Social}
         options={{
           tabBarLabel: t('tabs.social'),
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({color, size}) => (
             <Icon name="comment-text-multiple" color={color} size={size} />
           ),
@@ -109,11 +112,13 @@ const MainFlow = () => {
         options={({route}) => ({
           headerShown: getSettingsHeaderShown(route),
           tabBarLabel: t('tabs.settings'),
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({color, size}) => (
             <Icon name="cog" color={color} size={size} />
           ),
           tabBarStyle: {display: 'none'},
           headerTitle: t('tabs.settings'),
+          // eslint-disable-next-line react/no-unstable-nested-components
           headerLeft: () => <BackButton />,
         })}
       />
