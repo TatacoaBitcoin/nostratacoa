@@ -33,7 +33,9 @@
     "react-native-screens": "^3.21.1",
     "react-native-securerandom": "^1.0.1",
     "react-native-sha256": "^1.4.9",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-vector-icons": "^9.2.0",
+    "expo": "^48.0.0",
+    "expo-crypto": "~12.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
