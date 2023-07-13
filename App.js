@@ -24,6 +24,7 @@ import {
 } from './src/screens';
 import './i18n.config';
 import {AccountProvider} from './src/context/account.provider';
+import {NostrProvider} from './src/context/nostr.provider';
 
 const Tab = createBottomTabNavigator();
 const NewAccountStack = createNativeStackNavigator();
@@ -132,9 +133,11 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <AccountProvider>
-        <NavigationContainer>
-          {hasAccount ? <MainFlow /> : <AccountSetupFlow />}
-        </NavigationContainer>
+        <NostrProvider>
+          <NavigationContainer>
+            {hasAccount ? <MainFlow /> : <AccountSetupFlow />}
+          </NavigationContainer>
+        </NostrProvider>
       </AccountProvider>
     </SafeAreaProvider>
   );

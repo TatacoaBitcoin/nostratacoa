@@ -3,14 +3,14 @@ import {StyleSheet, Switch, Text, View} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const RelayItem = () => {
+const RelayItem = ({url}) => {
   const [isConnected, setIsConnected] = useState(false);
   const toggleConnected = () => setIsConnected(previousState => !previousState);
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.textName}>bitcoiner.social</Text>
+        <Text style={styles.textName}>{url}</Text>
         {isConnected ? (
           <Text style={styles.textSuccessStatus}>Conectado</Text>
         ) : (
