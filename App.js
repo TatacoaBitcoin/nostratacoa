@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   NavigationContainer,
-  getFocusedRouteNameFromRoute
+  getFocusedRouteNameFromRoute,
 } from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -10,27 +10,33 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {useTranslation} from 'react-i18next';
 
 import {BackButton} from './src/atoms';
-import {SettingsFlow, SETTINGS_SCREENS} from './src/config/navigation/SettingsFlow';
 import {
-  Home, 
-  Market, 
-  Social, 
+  SettingsFlow,
+  SETTINGS_SCREENS,
+} from './src/config/navigation/SettingsFlow';
+import {
+  Home,
+  Market,
+  Social,
   CreateWallet,
   Welcome,
+  RecoverWallet,
 } from './src/screens';
 import './i18n.config';
+import {AccountProvider} from './src/context/account.provider';
 
 const Tab = createBottomTabNavigator();
 const NewAccountStack = createNativeStackNavigator();
 
-const NewAccountFlow = () => {
+const AccountSetupFlow = () => {
+  const {t} = useTranslation();
+
   return (
     <NewAccountStack.Navigator initialRouteName="Welcome">
       <NewAccountStack.Screen
         name="Welcome"
         component={Welcome}
         options={{
-          title: 'Welcome',
           headerShown: false,
         }}
       />
@@ -38,20 +44,26 @@ const NewAccountFlow = () => {
         name="CreateWallet"
         component={CreateWallet}
         options={{
-          title: 'Create New Account',
+          title: t('newaccount.title'),
+        }}
+      />
+      <NewAccountStack.Screen
+        name="RecoverWallet"
+        component={RecoverWallet}
+        options={{
+          title: t('recovery.title'),
         }}
       />
     </NewAccountStack.Navigator>
   );
 };
 
-
 const MainFlow = () => {
   const {t} = useTranslation();
 
   function getSettingsHeaderShown(route) {
-    const routeName = getFocusedRouteNameFromRoute(route)
-    return !SETTINGS_SCREENS.includes(routeName)
+    const routeName = getFocusedRouteNameFromRoute(route);
+    return !SETTINGS_SCREENS.includes(routeName);
   }
 
   return (
@@ -94,7 +106,7 @@ const MainFlow = () => {
       <Tab.Screen
         name="Settings"
         component={SettingsFlow}
-        options={({ route }) => ({
+        options={({route}) => ({
           headerShown: getSettingsHeaderShown(route),
           tabBarLabel: t('tabs.settings'),
           tabBarIcon: ({color, size}) => (
@@ -114,9 +126,11 @@ const App = () => {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        {hasAccount ? <MainFlow /> : <NewAccountFlow />}
-      </NavigationContainer>
+      <AccountProvider>
+        <NavigationContainer>
+          {hasAccount ? <MainFlow /> : <AccountSetupFlow />}
+        </NavigationContainer>
+      </AccountProvider>
     </SafeAreaProvider>
   );
 };

@@ -8,6 +8,30 @@
   "header": {
     "backButton": "Back"
   },
+  "welcome": {
+    "title": "Welcome",
+    "create": "Create account",
+    "recovery": "Recover account"
+  },
+  "recovery" : {
+    "title": "Wallet Recovery",
+    "text": "Enter your 12-word phrase",
+    "button": "Continue"
+  },
+  "newaccount": {
+    "title": "Create New Account",
+    "text": "Write down your 12-word phrase in the correct order",
+    "refresh": "Regenerate words",
+    "button": "Continue",
+    "modal": {
+      "title": "Set password",
+      "text": "Set a strong password allowing you to login easily to your wallet from this device. We don't send and store the password anywhere except this device.",
+      "password": "Type a strong password",
+      "passwordconfirmation": "Type the password again",
+      "create": "Create account",
+      "cancel": "Cancel"
+    }
+  },
   "settings": {
     "relays": "Relays"
   }

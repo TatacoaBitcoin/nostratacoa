@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, Button, ScrollView} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 import {ScreenTemplate} from '../atoms';
 import {WordList, PwdModal} from '../molecules';
@@ -8,6 +9,7 @@ import {useLoading} from '../hooks/useLoading';
 import {generatePrivateKey} from '../libs/hdkey';
 
 const CreateWallet = ({navigation}) => {
+  const {t} = useTranslation();
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
   const {isLoading, withLoading} = useLoading();
 
@@ -25,8 +27,8 @@ const CreateWallet = ({navigation}) => {
         if (seed !== undefined) {
           const key = await generatePrivateKey(seed);
 
-          setPasswordModalOpen(false);
           // loadWallet(key);
+          setPasswordModalOpen(false);
         }
       } catch (error) {
         console.log('onCreateWallet#error', error.message);
@@ -41,11 +43,11 @@ const CreateWallet = ({navigation}) => {
         setVisible={setPasswordModalOpen}
         onContinue={onCreateWallet}
       />
-      <Text>Write down your 12-word phrase in the correct order</Text>
+      <Text>{t('newaccount.text')}</Text>
       <ScrollView>
         <WordList list={randomWords} />
-        <Button title="Regenerate" onPress={generateWords} />
-        <Button title="Continue" onPress={onContinue} />
+        <Button title={t('newaccount.refresh')} onPress={generateWords} />
+        <Button title={t('newaccount.button')} onPress={onContinue} />
       </ScrollView>
     </ScreenTemplate>
   );
