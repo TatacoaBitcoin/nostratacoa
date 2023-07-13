@@ -14,7 +14,7 @@ const RelayItem = ({url}) => {
         {isConnected ? (
           <Text style={styles.textSuccessStatus}>Conectado</Text>
         ) : (
-          <Text style={styles.textErrorStatus}>Sin Conexión</Text>
+          <Text style={styles.textErrorStatus}>Desconectado</Text>
         )}
       </View>
       <View style={styles.actionsContainer}>

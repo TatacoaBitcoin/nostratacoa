@@ -34,5 +34,15 @@
   },
   "settings": {
     "relays": "Relays"
-  }
+  },
+  "relaysettings": {
+    "add": "Add Relay",
+  },
+  "newrelaymodal": {
+    "title": "Add Relay",
+    "text": "Insert the realy URL",
+    "url": "URL",
+    "create": "Add",
+    "cancel": "Cancel",
+  },
 }

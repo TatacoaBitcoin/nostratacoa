@@ -34,5 +34,15 @@
   },
   "settings": {
     "relays": "Servidores"
-  }
+  },
+  "relaysettings": {
+    "add": "Agregar servidor",
+  },
+  "newrelaymodal": {
+    "title": "Agregar servidor",
+    "text": "Ingresa la dirección del servidor",
+    "url": "Dirección",
+    "create": "Agregar",
+    "cancel": "Cancelar",
+  },
 }
