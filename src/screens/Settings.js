@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {ScreenTemplate, SettingsNavItem} from '../atoms';
@@ -13,9 +13,16 @@ const Settings = () => {
       <SettingsNavItem
         to={RELAYS_SETTINGS_SCREEN_NAME}
         label={t('settings.relays')}
-        rightText={<Text style={{color: 'red'}}>Sin conexión</Text>}/>
+        rightText={<Text style={styles.redText}>Sin conexión</Text>}
+      />
     </ScreenTemplate>
   );
 };
+
+const styles = StyleSheet.create({
+  redText: {
+    color: 'red',
+  },
+});
 
 export {Settings};

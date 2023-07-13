@@ -6,17 +6,17 @@ import {Modal} from '../atoms/Modal';
 
 const PwdModal = ({isVisible, isWalletLoading, setVisible, onContinue}) => {
   const {t} = useTranslation();
-  const [errorMessage, setErrorMessage] = useState('');
+  // const [errorMessage, setErrorMessage] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   useEffect(() => {
-    setErrorMessage('');
+    // setErrorMessage('');
   }, [password, confirmPassword]);
 
   const onCreateWallet = () => {
     if (password !== confirmPassword) {
-      setErrorMessage("The entered passwords don't match!");
+      // setErrorMessage("The entered passwords don't match!");
       return;
     }
     onContinue(password);

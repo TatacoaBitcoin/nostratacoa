@@ -1,20 +1,20 @@
+import React from 'react';
+
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useTranslation} from 'react-i18next';
 
 import {Settings, RelaySettings} from './../../screens';
 
-const RELAYS_SETTINGS_SCREEN_NAME = "relaysSettings"
+const RELAYS_SETTINGS_SCREEN_NAME = 'relaysSettings';
 
-const SETTINGS_SCREENS = [
-  RELAYS_SETTINGS_SCREEN_NAME,
-]
+const SETTINGS_SCREENS = [RELAYS_SETTINGS_SCREEN_NAME];
 
 const SettingsStack = createNativeStackNavigator();
 
 const SettingsFlow = () => {
   const {t} = useTranslation();
 
-  return(
+  return (
     <SettingsStack.Navigator
       screenOptions={{
         headerShown: true,
@@ -34,6 +34,6 @@ const SettingsFlow = () => {
       />
     </SettingsStack.Navigator>
   );
-}
+};
 
 export {SettingsFlow, SETTINGS_SCREENS, RELAYS_SETTINGS_SCREEN_NAME};

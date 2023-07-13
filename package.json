@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "@bitauth/libauth": "^1.19.1",

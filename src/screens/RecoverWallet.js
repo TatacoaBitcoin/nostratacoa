@@ -14,7 +14,7 @@ import {isWordValid} from '../utils';
 import {PwdModal} from '../molecules';
 import {useLoading} from '../hooks/useLoading';
 import {useRecoveryWords} from '../hooks/useRecoveryWords';
-import {generatePrivateKey} from '../libs/hdkey';
+// import {generatePrivateKey} from '../libs/hdkey';
 
 const RECOVERY_WORD_COUNT = 12;
 
@@ -50,7 +50,7 @@ const RecoverWallet = ({navigation}) => {
         const seed = await generateSeed(password);
 
         if (seed !== undefined) {
-          const key = await generatePrivateKey(seed);
+          // const key = await generatePrivateKey(seed);
 
           // loadWallet(key);
           setPasswordModalOpen(false);

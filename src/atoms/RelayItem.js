@@ -11,10 +11,11 @@ const RelayItem = () => {
     <View style={styles.container}>
       <View>
         <Text style={styles.textName}>bitcoiner.social</Text>
-        {isConnected
-          ? <Text style={styles.textSuccessStatus}>Conectado</Text>
-          : <Text style={styles.textErrorStatus}>Sin Conexión</Text>
-        }
+        {isConnected ? (
+          <Text style={styles.textSuccessStatus}>Conectado</Text>
+        ) : (
+          <Text style={styles.textErrorStatus}>Sin Conexión</Text>
+        )}
       </View>
       <View style={styles.actionsContainer}>
         <View style={styles.switchContainer}>
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   },
   switchContainer: {
     marginRight: 10,
-  }
+  },
 });
 
 export {RelayItem};

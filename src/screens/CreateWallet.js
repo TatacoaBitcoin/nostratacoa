@@ -6,7 +6,7 @@ import {ScreenTemplate} from '../atoms';
 import {WordList, PwdModal} from '../molecules';
 import {useRecoveryWords} from '../hooks/useRecoveryWords';
 import {useLoading} from '../hooks/useLoading';
-import {generatePrivateKey} from '../libs/hdkey';
+// import {generatePrivateKey} from '../libs/hdkey';
 
 const CreateWallet = ({navigation}) => {
   const {t} = useTranslation();
@@ -25,7 +25,7 @@ const CreateWallet = ({navigation}) => {
         const seed = await generateSeed(password);
 
         if (seed !== undefined) {
-          const key = await generatePrivateKey(seed);
+          // const key = await generatePrivateKey(seed);
 
           // loadWallet(key);
           setPasswordModalOpen(false);
